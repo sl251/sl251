@@ -2,7 +2,10 @@
 
 # Hi, I'm sl251 👋
 
-**临床医学在读，靠 AI 搓代码的 Vibe Coder**
+<!-- 动态打字机效果 -->
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=61DAFB&center=true&vCenter=true&width=500&lines=临床医学在读;靠+AI+搓代码的+Vibe+Coder;探索+Agent+与自动化" alt="Typing SVG" />
+</a>
 
 ![Python](https://img.shields.io/badge/Python-基本看不懂-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![前端](https://img.shields.io/badge/前端-Gpt真厉害-61DAFB?style=for-the-badge&logo=react&logoColor=black)
