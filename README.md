@@ -5,7 +5,7 @@
 **临床医学在读，靠 AI 搓代码的 Vibe Coder**
 
 ![Python](https://img.shields.io/badge/Python-基本看不懂-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![前端](https://img.shields.io/badge/前端-全靠AI-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![前端](https://img.shields.io/badge/前端-Gpt真厉害-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![后端](https://img.shields.io/badge/后端-Claude真香-000000?style=for-the-badge&logo=anthropic&logoColor=white)
 ![Prompt](https://img.shields.io/badge/Prompt-然后祈祷-FF7A00?style=for-the-badge)
 
