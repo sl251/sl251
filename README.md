@@ -42,7 +42,7 @@
 
 <div align="center">
 
-**一些眼熟但不太会写的工具**
+**感谢github,感谢linux…**
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
