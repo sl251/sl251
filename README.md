@@ -3,8 +3,8 @@
 # Hi, I'm sl251 👋
 
 <!-- 动态打字机效果 -->
-<a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=61DAFB&center=true&vCenter=true&width=500&lines=临床医学在读;靠+AI+搓代码的+Vibe+Coder;探索+Agent+与自动化" alt="Typing SVG" />
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=600&size=20&pause=1000&color=61DAFB&center=true&vCenter=true&width=500&lines=%E4%B8%B4%E5%BA%8A%E5%8C%BB%E5%AD%A6%E5%9C%A8%E8%AF%BB;%E9%9D%A0+AI+%E6%90%93%E4%BB%A3%E7%A0%81%E7%9A%84+Vibe+Coder;%E6%8E%A2%E7%B4%A2+Agent+%E4%B8%8E%E8%87%AA%E5%8A%A8%E5%8C%96)](https://git.io/typing-svg)
+
 </a>
 
 ![Python](https://img.shields.io/badge/Python-基本看不懂-3776AB?style=for-the-badge&logo=python&logoColor=white)
