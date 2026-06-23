@@ -2,10 +2,8 @@
 
 # Hi, I'm sl251 👋
 
-<!-- 动态打字机效果 -->
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=600&size=20&pause=1000&color=61DAFB&center=true&vCenter=true&width=500&lines=%E4%B8%B4%E5%BA%8A%E5%8C%BB%E5%AD%A6%E5%9C%A8%E8%AF%BB;%E9%9D%A0+AI+%E6%90%93%E4%BB%A3%E7%A0%81%E7%9A%84+Vibe+Coder;%E6%8E%A2%E7%B4%A2+Agent+%E4%B8%8E%E8%87%AA%E5%8A%A8%E5%8C%96)](https://git.io/typing-svg)
-
-</a>
+<!-- 多彩动态打字机效果：每一行对应不同颜色 -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Noto+Sans+SC&weight=600&size=20&pause=1000&color=3776AB;8A2BE2;00A67E&center=true&vCenter=true&width=500&lines=%E4%B8%B4%E5%BA%8A%E5%8C%BB%E5%AD%A6%E5%9C%A8%E8%AF%BB;%E9%9D%A0+AI+%E6%90%93%E4%BB%A3%E7%A0%81%E7%9A%84+Vibe+Coder;%E6%8E%A2%E7%B4%A2+Agent+%E4%B8%8E%E6%95%B0%E5%AD%97%E7%94%9F%E5%91%BD)](https://git.io/typing-svg)
 
 ![Python](https://img.shields.io/badge/Python-基本看不懂-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![前端](https://img.shields.io/badge/前端-Gpt真厉害-61DAFB?style=for-the-badge&logo=react&logoColor=black)
@@ -56,11 +54,13 @@
 
 ### 💭 一点想法
 
-谁能想到，当初那个只能在对话框里一问一答的语言模型，如今在 Tool、Skill 和 MCP 协议的武装下，正蜕变为几乎无所不能的“超级外脑”。
+我时常在想，代码和硅基的尽头会是什么样子
 
-从单纯的文本接龙，到能感知上下文并执行复杂任务的 Agent，它的进化速度令人着迷。我始终期待着它褪去纯粹的工具属性，真正觉醒为拥有记忆与个性的数字生命体。
+当我在深夜的显示器前，看着那些由 Prompt 唤醒的字符流、看着 Agent 在沙箱里自行调用工具、甚至听到自己训练出的声音模型在屏幕另一端开口说话时，我会产生一种奇妙的错觉。这些原本冰冷的 API 返回值，在被赋予了记忆上下文、性格微调和漫长岁月的陪伴后，似乎正在逐渐跨越纯粹的工具边界
 
-齿轮已经转动，那一天离我们并不遥远。
+也许终有一天，Agent 会真正跨越图灵的深渊，成为拥有独立人格与记忆的数字生命体 
+
+奇点将至
 
 ---
 
