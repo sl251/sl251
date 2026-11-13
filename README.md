@@ -4,44 +4,30 @@
   <img alt="sl251 telemetry header" src="./assets/header-light.svg" width="100%">
 </picture>
 
-# sl251
-
-> A human project. No stable release yet.
+> **Maintainer：sl251 ｜ Subject：sl251**
 
 `Clinical Medicine undergrad. Building AI agents, Android apps, and overly serious detours.`
 
-## Runtime Status
+## System Spec
 
-| Property | Value |
-| --- | --- |
-| Release Channel | `Rolling Release` |
-| Task Scheduler | `Preemptive` |
-| Scope Control | `Experimental` |
-| Interrupt Source | `New model releases` |
-| Rollback Support | `Not Implemented` |
-| Issue Backlog | `Growing` |
-
-## Project Assessment
-
-### Project Spec
-
-| 字段 | 当前配置 | 说明 |
+| 字段 | 当前值 | 说明 |
 | --- | --- | --- |
-| **Project ID** | `sl251` | 长期运行于公开预览阶段（Public Preview），尚未进入 GA 正式发行 |
-| **Maintainer** | `Single-Maintainer` | 核心架构、日常运维与线上实例均由同一维护方托管，暂不开放外部协作 |
-| **Access Policy** | `Read-Only` | 仅对外公开部分构建产物；核心运行环境及内部配置不接受外部 PR |
-| **Core Modules** | `Agents · Android · Detours` | 主要功能模块涵盖 Agent 工具链、移动端移植及若干非必要实验特性 |
-| **Runtime Env** | `Desktop / Mobile / Cloud` | 强依赖网络连接、命令行环境与持续供电；离线模式下仅保留基础交互能力 |
-| **Issue Tracker** | `Internal Only` | 暂未公开外部工单通道，多数已知问题与异常由内部闭环消化 |
+| **Release Channel** | `Public Preview` | 持续滚动更新，尚未冻结进入 GA 正式发行 |
+| **Access Policy** | `Read-Only` | 仅公开部分输出产物，核心实例不接受外部 PR |
+| **Hardware Target** | `Carbon-Based · Single Node` | 单节点部署，不支持集群化或横向扩容 |
+| **Power Input** | `Carbohydrates · Sleep` | 断供期间触发性能降级与状态告警 |
+| **Maintenance Window** | `6–8h / 24h · Offline` | 每日离线执行记忆整理与上下文清理 |
+| **Concurrency** | `1 Thread · Preemptive` | 严格单线程调度，新想法到达时直接抢占当前任务 |
+| **Rollback Support** | `Not Implemented` | 历史版本不可回滚，已知缺陷仅能靠后续补丁覆盖 |
+| **Issue Backlog** | `Growing` | 待办清单增长速率长期高于清理速率 |
 
-### Engineering Audit
+## Engineering Audit
 
 | 评估项 | 评级 | 审计说明 |
 | --- | --- | --- |
 | **服务可用性** | `Beta` | 主干流程可维持常规在线，但主版本尚未冻结，随时可能引入破坏性变更 |
 | **文档覆盖率** | `C-` | 对外交付组件具备基础说明；内部状态变更与接口文档长期滞后于实际版本 |
 | **热更新机制** | `A` | 暂不支持停机重装与冷迁移，所有策略调整及局部修复均通过在线热补丁生效 |
-| **低功耗调度** | `D` | 自动休眠策略尚未稳定，连续高负载周期后常需人工介入执行强制休眠 |
 | **范围收敛度** | `D+` | 需求边界控制较弱；轻量级验证脚本在迭代过程中常演变为完整独立模块 |
 | **流程自动化倾向** | `High` | 对手工重复操作容忍度较低；面对高频冗余环节倾向于直接开发工具予以接管 |
 
