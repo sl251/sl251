@@ -475,8 +475,14 @@ def write_profile_json(
                 "name": "WHO IS NAILONG",
                 "url": "https://whoisnailong.me/",
                 "repo": "sl251/nailong",
-                "summary": "全国高校“奶龙大学”域名 3D 地球，点一下还会笑。",
-            }
+                "summary": "全国高校“奶龙大学”域名 3D 地球，点一下还会笑。一个毫无现实必要性、却依然按正经网站标准配齐了独立域名和交互地球仪的产物。",
+            },
+            {
+                "name": "defensive-writing-expression",
+                "url": "https://github.com/sl251/defensive-writing-expression",
+                "repo": "sl251/defensive-writing-expression",
+                "summary": "GPT 式防御性表达 Skill：专门把简单观点改写成层层审慎修饰的“过审腔”。",
+            },
         ],
         "telemetry_30d": pulse,
         "recent_activity": [

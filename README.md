@@ -50,11 +50,11 @@
 - **[E2B Sandbox](https://github.com/sl251/astrbot_plugin_e2b_sandbox)** — 给机器人配一台云端 Python 沙箱电脑，算数据、画图、处理文件不占本地资源。
 
 <details>
-<summary>其他认真做出来的轮子（3）</summary>
+<summary>其他模块（3）</summary>
 
-- **[defensive-writing-expression](https://github.com/sl251/defensive-writing-expression)** — 专门生成“GPT 式三层套娃防御性表达”的 Agent Skill，配了 22 项回归测试。
 - **[zlibrary-tor](https://github.com/sl251/zlibrary-tor)** — 走本地 Tor 代理连 Z-Library 洋葱 E-API 的检索与下载 CLI，全命令输出纯 JSON 供 Agent 调用。
 - **[Xiaomi MiMo Voice Dispatcher](https://github.com/sl251/astrbot_plugin_xiaomi_mimo_voice_dispatcher)** — 本来只是为了试免费语音额度，最后做成了让模型自己决定“什么时候开口发语音”的工具插件。
+- **[imagefree-skill](https://github.com/sl251/imagefree-skill)** — HTTP 优先、浏览器自动化回退的文生图 Skill，请求中途失败可按原任务 ID 接着轮询。
 
 </details>
 
@@ -69,14 +69,15 @@
 
 ## Experiments
 
-- **[WHO IS NAILONG](https://whoisnailong.me/)**（[sl251/nailong](https://github.com/sl251/nailong)）— 全国高校“奶龙大学”域名 3D 地球，点一下还会笑。严肃项目列表里的已知异常。
+- **[WHO IS NAILONG](https://whoisnailong.me/)**（[sl251/nailong](https://github.com/sl251/nailong)）— 全国高校“奶龙大学”域名 3D 地球，点一下还会笑。一个毫无现实必要性、却依然按正经网站标准配齐了独立域名和交互地球仪的产物。
+- **[defensive-writing-expression](https://github.com/sl251/defensive-writing-expression)** — GPT 式防御性表达 Skill：专门把简单观点改写成层层审慎修饰的“过审腔”。列在这里不代表本人日常也这么说话，当然这也不意味着否定该文风在回避无谓争论时的实用边界。
 
 <details>
 <summary>⚠️ 免责声明（以及对该免责声明的澄清）</summary>
 
-本主页展示的内容仅代表该人类对象在最近一次构建时的局部观察快照，并不构成对系统稳定性、作息规律或下一个坑何时会填完的任何承诺；需要说明的是，上述“不作承诺”本身并不意味着项目处于停摆状态，更不能直接等同于对任何既定主线或实验分支的否定。同样地，这句补充澄清也并非为了暗示本仓库存在某种严格意义上的版本发布时间表——它只是一段为了避免过度解读而顺手多写了一层的声明，而“顺手多写了一层”这件事本身，亦不代表任何未明示的承诺。
+本主页仅呈现维护者在当前时间点愿意公开的部分信息，既不构成完整的个人履历，也不代表对任何项目长期稳定性、更新节奏或后续方向的承诺。不过，未作承诺本身并不意味着相关仓库处于停滞状态，更不宜反推出对这些工作缺乏持续投入；至于前述关于“不宜反推”的补充说明，其目的也仅在于划定阅读边界，而非暗示本页背后存在某种未公开的严格路线图。
 
-<sub>— Written in the spirit of <a href="https://github.com/sl251/defensive-writing-expression">defensive-writing-expression</a></sub>
+<sub>— Styled with <a href="https://github.com/sl251/defensive-writing-expression">defensive-writing-expression</a></sub>
 
 </details>
 
