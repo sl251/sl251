@@ -390,9 +390,8 @@ def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
   <line x1="28" y1="50" x2="932" y2="50" stroke="{t['divider']}" stroke-width="1"/>
 
   <!-- 左侧项目主标识区 -->
-  <text x="34" y="116" fill="{t['text_primary']}" font-family="{sans}" font-size="48" font-weight="700" letter-spacing="-1">sl251</text>
-  <text x="36" y="144" fill="{t['text_secondary']}" font-family="{sans}" font-size="14.5">A human project. No stable release yet.</text>
-  <text x="36" y="186" fill="{t['text_muted']}" font-family="{mono}" font-size="10.5" letter-spacing="0.8">ROLLING RELEASE  ·  PREEMPTIVE  ·  EXPERIMENTAL</text>
+  <text x="36" y="126" fill="{t['text_primary']}" font-family="{sans}" font-size="48" font-weight="700" letter-spacing="-1">sl251</text>
+  <text x="38" y="156" fill="{t['text_secondary']}" font-family="{sans}" font-size="15">A human project. No stable release yet.</text>
 
   <!-- 右侧 30 天公开提交示波面板 -->
   <rect x="472" y="64" width="460" height="132" rx="10" fill="{t['panel_bg']}" fill-opacity="{t['panel_bg_opacity']}" stroke="{t['panel_border']}" stroke-width="1"/>
