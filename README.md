@@ -10,16 +10,11 @@
 
 ## System Spec
 
-| 字段 | 当前值 | 说明 |
-| --- | --- | --- |
-| **Release Channel** | `Public Preview` | 持续滚动更新，尚未冻结进入 GA 正式发行 |
-| **Access Policy** | `Read-Only` | 仅公开部分输出产物，核心实例不接受外部 PR |
-| **Hardware Target** | `Carbon-Based · Single Node` | 单节点部署，不支持集群化或横向扩容 |
-| **Power Input** | `Carbohydrates · Sleep` | 断供期间触发性能降级与状态告警 |
-| **Maintenance Window** | `6–8h / 24h · Offline` | 每日离线执行记忆整理与上下文清理 |
-| **Concurrency** | `1 Thread · Preemptive` | 严格单线程调度，新想法到达时直接抢占当前任务 |
-| **Rollback Support** | `Not Implemented` | 历史版本不可回滚，已知缺陷仅能靠后续补丁覆盖 |
-| **Issue Backlog** | `Growing` | 待办清单增长速率长期高于清理速率 |
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/spec-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/spec-light.svg">
+  <img alt="sl251 system specification" src="./assets/spec-light.svg" width="100%">
+</picture>
 
 ## Engineering Audit
 
@@ -30,18 +25,6 @@
 </picture>
 
 > **综合评审结论**：一个处于长期预览阶段、特性持续扩张且偶发非预期行为的实验性项目。适合用于前沿工具链探索与快速原型验证；若业务场景对确定性排期或生产级 SLA 有强约束，建议审慎评估接入风险。
-
-<details>
-<summary>查看审计明细与就绪门禁说明</summary>
-
-- **服务可用性 (`Beta`)**：主干流程可维持常规在线，但主版本尚未冻结，随时可能引入破坏性变更。
-- **文档覆盖率 (`C-`)**：对外交付组件具备基础说明；内部状态变更与接口文档长期滞后于实际版本。
-- **热更新机制 (`A`)**：暂不支持停机重装与冷迁移，所有策略调整及局部修复均通过在线热补丁生效。
-- **范围收敛度 (`D+`)**：需求边界控制较弱；轻量级验证脚本在迭代过程中常演变为完整独立模块。
-- **流程自动化 (`High`)**：对手工重复操作容忍度较低；面对高频冗余环节倾向于直接开发工具予以接管。
-- **就绪门禁 (`3 / 5`)**：已通过单节点冷启动、异常后休眠自愈与持续集成检查；全量内部文档化与 GA / LTS 标准尚未达标。
-
-</details>
 
 ## Deployed Projects
 
