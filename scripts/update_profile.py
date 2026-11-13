@@ -18,6 +18,11 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
+try:
+    from cycling_scene import WHEEL_CIRC, build_cycling_panel
+except ImportError:
+    from scripts.cycling_scene import WHEEL_CIRC, build_cycling_panel
+
 OWNER = "sl251"
 SELF_REPO = "sl251"
 API_BASE = "https://api.github.com"
@@ -281,94 +286,61 @@ def fetch_30d_pulse(
     }
 
 
-def build_ecg_paths(counts: list[int]) -> tuple[str, str, list[tuple[float, float, int]]]:
-    """将 30 天每日提交数转换为平滑的示波器/心电脉冲 SVG 路径与峰点坐标。"""
-    x_start = 496.0
-    x_end = 916.0
-    y_base = 158.0
-    y_bottom = 176.0
-    max_height = 54.0
-    step = (x_end - x_start) / max(len(counts) - 1, 1)
-
-    peak_ref = max(max(counts, default=0), 4)
-    line_parts: list[str] = [f"M {x_start - 8.0:.1f} {y_base:.1f}"]
-    peaks: list[tuple[float, float, int]] = []
-
-    for idx, count in enumerate(counts):
-        cx = x_start + idx * step
-        if count <= 0:
-            line_parts.append(f"L {cx:.1f} {y_base:.1f}")
-            continue
-
-        # 使用幂次平滑缩放，拉开高低提交日的起伏层次同时保证单次提交清晰可见
-        ratio = (count / peak_ref) ** 0.65
-        height = 12.0 + (max_height - 12.0) * min(ratio, 1.0)
-        y_peak = y_base - height
-
-        q_x = cx - 4.8
-        dip_x = cx - 2.2
-        s_x = cx + 2.3
-        end_x = cx + 5.0
-
-        line_parts.append(f"L {q_x:.1f} {y_base:.1f}")
-        line_parts.append(f"L {dip_x:.1f} {y_base + 4.5:.1f}")
-        line_parts.append(f"L {cx:.1f} {y_peak:.1f}")
-        line_parts.append(f"L {s_x:.1f} {y_base + 6.5:.1f}")
-        line_parts.append(f"L {end_x:.1f} {y_base:.1f}")
-        peaks.append((cx, y_peak, count))
-
-    line_parts.append(f"L {x_end + 8.0:.1f} {y_base:.1f}")
-    line_d = " ".join(line_parts)
-    area_d = f"{line_d} L {x_end + 8.0:.1f} {y_bottom:.1f} L {x_start - 8.0:.1f} {y_bottom:.1f} Z"
-    return line_d, area_d, peaks
-
-
 def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
-    """生成指定配色的自托管遥测 SVG 头图。"""
+    """生成指定配色的自托管遥测 SVG 头图（右侧嵌入 Q 版冬雪莲骑行场景）。"""
     t = THEMES[theme_name]
-    counts = [item["commits"] for item in pulse["daily_counts"]]
-    line_d, area_d, peaks = build_ecg_paths(counts)
-
     total_commits = pulse["total_commits"]
     peak = pulse["peak_per_day"]
-    w_start = html.escape(pulse["window_start"])
     w_end = html.escape(pulse["window_end"])
-
-    # 仅在有提交的日子画圆点，最后一个活跃点加雷达扩散脉冲
-    dots_svg_parts: list[str] = []
-    for idx, (px, py, _cnt) in enumerate(peaks):
-        is_last = idx == len(peaks) - 1
-        if is_last:
-            dots_svg_parts.append(
-                f'<circle class="motion-only" cx="{px:.1f}" cy="{py:.1f}" r="3.5" fill="none" stroke="{t["dot"]}" stroke-width="1.3">'
-                f'<animate attributeName="r" values="3.5;11" dur="2.4s" repeatCount="indefinite"/>'
-                f'<animate attributeName="opacity" values="0.7;0" dur="2.4s" repeatCount="indefinite"/>'
-                f'</circle>'
-            )
-            dots_svg_parts.append(
-                f'<circle cx="{px:.1f}" cy="{py:.1f}" r="2.8" fill="{t["dot"]}"/>'
-            )
-        else:
-            dots_svg_parts.append(
-                f'<circle cx="{px:.1f}" cy="{py:.1f}" r="1.9" fill="{t["accent_start"]}" fill-opacity="0.85"/>'
-            )
-    dots_svg = "\n    ".join(dots_svg_parts)
+    cycling_panel = build_cycling_panel(theme_name, peak)
 
     mono = "ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace"
     sans = "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 220" width="960" height="220" role="img" aria-label="sl251 telemetry header ({theme_name})">
   <style>
-    .ecg-sweep {{
-      stroke-dasharray: 120 1000;
-      animation: ecgSweep 4.8s linear infinite;
+    .bg-far {{ animation: scrollTile 22s linear infinite; }}
+    .bg-mid {{ animation: scrollTile 9s linear infinite; }}
+    .road-track {{ animation: roadScroll 0.8s linear infinite; }}
+    .chain-line {{ animation: chainFwd 0.3s linear infinite; }}
+    .chain-line-rev {{ animation: chainBack 0.3s linear infinite; }}
+    .rider-bob {{ animation: riderBounce 1.2s ease-in-out infinite; }}
+    .drop-float {{ animation: dropBob 1.8s ease-in-out infinite; }}
+    .wind-line {{ animation: windSweep 1.1s linear infinite; }}
+    .wind-line.w2 {{ animation-delay: -0.55s; }}
+    @keyframes scrollTile {{
+      0% {{ transform: translateX(0); }}
+      100% {{ transform: translateX(-460px); }}
     }}
-    @keyframes ecgSweep {{
-      0% {{ stroke-dashoffset: 120; }}
-      100% {{ stroke-dashoffset: -880; }}
+    @keyframes roadScroll {{
+      0% {{ transform: translateX(0); }}
+      100% {{ transform: translateX(-{WHEEL_CIRC:.3f}px); }}
+    }}
+    @keyframes chainFwd {{
+      0% {{ stroke-dashoffset: 0; }}
+      100% {{ stroke-dashoffset: -8; }}
+    }}
+    @keyframes chainBack {{
+      0% {{ stroke-dashoffset: 0; }}
+      100% {{ stroke-dashoffset: 8; }}
+    }}
+    @keyframes riderBounce {{
+      0%, 50%, 100% {{ transform: translateY(0px); }}
+      25%, 75% {{ transform: translateY(-0.9px); }}
+    }}
+    @keyframes dropBob {{
+      0%, 100% {{ transform: translateY(0px); opacity: 0.95; }}
+      50% {{ transform: translateY(-1.8px); opacity: 0.55; }}
+    }}
+    @keyframes windSweep {{
+      0% {{ transform: translateX(42px); opacity: 0; }}
+      25% {{ opacity: 0.72; }}
+      82% {{ opacity: 0.45; }}
+      100% {{ transform: translateX(-92px); opacity: 0; }}
     }}
     @media (prefers-reduced-motion: reduce) {{
-      .ecg-sweep {{ animation: none; stroke-dasharray: none; }}
+      .bg-far, .bg-mid, .road-track, .chain-line, .chain-line-rev,
+      .rider-bob, .drop-float, .wind-line {{ animation: none; }}
       .motion-only {{ display: none; }}
     }}
   </style>
@@ -376,14 +348,6 @@ def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
     <linearGradient id="bg-{theme_name}" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="{t['bg_start']}"/>
       <stop offset="100%" stop-color="{t['bg_end']}"/>
-    </linearGradient>
-    <linearGradient id="pulse-stroke-{theme_name}" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="{t['accent_start']}"/>
-      <stop offset="100%" stop-color="{t['accent_end']}"/>
-    </linearGradient>
-    <linearGradient id="pulse-area-{theme_name}" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="{t['area_color']}" stop-opacity="{t['area_opacity']}"/>
-      <stop offset="100%" stop-color="{t['area_color']}" stop-opacity="0"/>
     </linearGradient>
     <pattern id="grid-{theme_name}" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M 32 0 L 0 0 0 32" fill="none" stroke="{t['grid']}" stroke-opacity="{t['grid_opacity']}" stroke-width="1"/>
@@ -416,33 +380,10 @@ def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
   <text x="36" y="126" fill="{t['text_primary']}" font-family="{sans}" font-size="48" font-weight="700" letter-spacing="-1">sl251</text>
   <text x="38" y="156" fill="{t['text_secondary']}" font-family="{sans}" font-size="15">A human project. No stable release yet.</text>
 
-  <!-- 右侧 30 天公开提交示波面板 -->
-  <rect x="472" y="64" width="460" height="132" rx="10" fill="{t['panel_bg']}" fill-opacity="{t['panel_bg_opacity']}" stroke="{t['panel_border']}" stroke-width="1"/>
-  <text x="488" y="83" fill="{t['text_muted']}" font-family="{mono}" font-size="10.5" letter-spacing="1.1">PUBLIC COMMIT PULSE (30D)</text>
-  <text x="918" y="83" text-anchor="end" fill="{t['text_secondary']}" font-family="{mono}" font-size="10.5" letter-spacing="0.8">PEAK {peak}/D</text>
-
-  <line x1="488" y1="106" x2="922" y2="106" stroke="{t['guide']}" stroke-width="1" stroke-dasharray="2 4"/>
-  <line x1="488" y1="132" x2="922" y2="132" stroke="{t['guide']}" stroke-width="1" stroke-dasharray="2 4"/>
-  <line x1="488" y1="158" x2="922" y2="158" stroke="{t['baseline']}" stroke-width="1" stroke-dasharray="3 3"/>
-
-  <g clip-path="url(#panel-clip-{theme_name})">
-    <path d="{area_d}" fill="url(#pulse-area-{theme_name})"/>
-    <!-- 底层基线波形 -->
-    <path d="{line_d}" fill="none" stroke="url(#pulse-stroke-{theme_name})" stroke-opacity="0.38" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- 沿曲线行进的高亮激光拖尾 -->
-    <path d="{line_d}" pathLength="1000" fill="none" stroke="url(#pulse-stroke-{theme_name})" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ecg-sweep"/>
-    {dots_svg}
-    <!-- 沿真实心电曲线匀速扫过的示波光点 -->
-    <g class="motion-only">
-      <circle r="6.5" fill="{t['dot']}" fill-opacity="0.24"/>
-      <circle r="3.0" fill="{t['dot']}"/>
-      <circle r="1.2" fill="#ffffff"/>
-      <animateMotion dur="4.8s" repeatCount="indefinite" calcMode="paced" path="{line_d}"/>
-    </g>
-  </g>
-
-  <text x="488" y="185" fill="{t['text_muted']}" font-family="{mono}" font-size="10" letter-spacing="0.5">{w_start}</text>
-  <text x="918" y="185" text-anchor="end" fill="{t['text_muted']}" font-family="{mono}" font-size="10" letter-spacing="0.5">{w_end}</text>
+  <!-- 右侧 Q 版冬雪莲骑行动态面板（替换原 30 天示波器面板） -->
+  <rect x="472" y="64" width="460" height="132" rx="10" fill="{t['panel_bg']}" fill-opacity="{t['panel_bg_opacity']}"/>
+{cycling_panel}
+  <rect x="472" y="64" width="460" height="132" rx="10" fill="none" stroke="{t['panel_border']}" stroke-width="1"/>
 </svg>
 """
 
