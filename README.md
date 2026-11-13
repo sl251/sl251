@@ -69,8 +69,8 @@
 
 ## Experiments
 
-- **[WHO IS NAILONG](https://whoisnailong.me/)**（[sl251/nailong](https://github.com/sl251/nailong)）— 全国高校“奶龙大学”域名 3D 地球，点一下还会笑。一个毫无现实必要性、却依然按正经网站标准配齐了独立域名和交互地球仪的产物。
-- **[defensive-writing-expression](https://github.com/sl251/defensive-writing-expression)** — GPT 式防御性表达 Skill：专门把简单观点改写成层层审慎修饰的“过审腔”。列在这里不代表本人日常也这么说话，当然这也不意味着否定该文风在回避无谓争论时的实用边界。
+- **[WHO IS NAILONG](https://whoisnailong.me/)**（[sl251/nailong](https://github.com/sl251/nailong)）— 全国高校奶龙大学域名 3D 地球
+- **[defensive-writing-expression](https://github.com/sl251/defensive-writing-expression)** — GPT 式防御性表达 Skill：专门把简单观点改写成层层审慎修饰的“过审腔”。列在这里不代表本人日常也这么说话，当然这也不意味着否定该文风在回避无谓争论时的实用边界
 
 <details>
 <summary>⚠️ 免责声明（以及对该免责声明的澄清）</summary>
