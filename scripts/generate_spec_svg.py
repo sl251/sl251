@@ -104,13 +104,23 @@ def render_spec_svg(theme_name: str) -> str:
         cy = 1 + row * (card_h + row_gap)
         accent = t[color_key]
         icon_svg = icon_tpl.format(c=accent)
+        icon_cls = ' class="spec-warn"' if idx == 5 else ' class="spec-icon"'
+        live_ring = (
+            f'\n    <circle class="motion-only" cx="{cx + 21}" cy="{cy + 20}" r="3" fill="none" stroke="{accent}" stroke-width="1.3" stroke-opacity="0.7">\n'
+            f'      <animate attributeName="r" values="3;9.5" dur="2.8s" repeatCount="indefinite"/>\n'
+            f'      <animate attributeName="stroke-opacity" values="0.7;0" dur="2.8s" repeatCount="indefinite"/>\n'
+            f"    </circle>"
+            if idx == 0
+            else ""
+        )
 
         cards_svg.append(
             f"""  <g>
     <rect x="{cx}" y="{cy}" width="{card_w}" height="{card_h}" rx="12" fill="url(#spec-card-{theme_name})" stroke="{t['border']}" stroke-width="1"/>
-    <circle cx="{cx + 21}" cy="{cy + 20}" r="3" fill="{accent}"/>
+    <rect class="spec-edge spec-d{idx}" x="{cx}" y="{cy}" width="{card_w}" height="{card_h}" rx="12" fill="none" stroke="{accent}" stroke-width="1" stroke-opacity="0"/>{live_ring}
+    <circle class="spec-dot spec-d{idx}" cx="{cx + 21}" cy="{cy + 20}" r="3" fill="{accent}"/>
     <text x="{cx + 31}" y="{cy + 24}" fill="{t['text_muted']}" font-family="{mono}" font-size="10.5" letter-spacing="1.1">{html.escape(label)}</text>
-    <g transform="translate({cx + card_w - 34}, {cy + 12})">{icon_svg}</g>
+    <g{icon_cls} transform="translate({cx + card_w - 34}, {cy + 12})">{icon_svg}</g>
     <text x="{cx + 18}" y="{cy + 49}" fill="{t['text_primary']}" font-family="{sans}" font-size="17" font-weight="600">{html.escape(value)}</text>
     <text x="{cx + 18}" y="{cy + 70}" fill="{t['text_secondary']}" font-family="{sans}" font-size="12">{html.escape(desc)}</text>
   </g>"""
@@ -118,6 +128,33 @@ def render_spec_svg(theme_name: str) -> str:
 
     joined_cards = "\n".join(cards_svg)
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 278" width="960" height="278" role="img" aria-label="sl251 system specification bento grid ({theme_name})">
+  <style>
+    @keyframes specDotBreathe {{
+      0%, 100% {{ opacity: 1; }}
+      50% {{ opacity: 0.42; }}
+    }}
+    @keyframes specEdgeGlow {{
+      0%, 100% {{ stroke-opacity: 0; }}
+      50% {{ stroke-opacity: 0.36; }}
+    }}
+    @keyframes specWarnPulse {{
+      0%, 100% {{ opacity: 1; }}
+      50% {{ opacity: 0.48; }}
+    }}
+    .spec-dot {{ animation: specDotBreathe 3.6s ease-in-out infinite; }}
+    .spec-edge {{ animation: specEdgeGlow 4.8s ease-in-out infinite; }}
+    .spec-warn {{ animation: specWarnPulse 2.4s ease-in-out infinite; }}
+    .spec-d0 {{ animation-delay: 0s; }}
+    .spec-d1 {{ animation-delay: -0.8s; }}
+    .spec-d2 {{ animation-delay: -1.6s; }}
+    .spec-d3 {{ animation-delay: -2.4s; }}
+    .spec-d4 {{ animation-delay: -3.2s; }}
+    .spec-d5 {{ animation-delay: -4.0s; }}
+    @media (prefers-reduced-motion: reduce) {{
+      .spec-dot, .spec-edge, .spec-warn {{ animation: none; }}
+      .motion-only {{ display: none; }}
+    }}
+  </style>
   <defs>
     <linearGradient id="spec-card-{theme_name}" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="{t['card_bg_start']}"/>

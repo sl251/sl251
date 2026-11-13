@@ -116,17 +116,37 @@ def render_audit_svg(theme_name: str) -> str:
             f'<line x1="{cx:.1f}" y1="{cy:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="{t["ring"]}" stroke-width="1"/>'
         )
 
-    # 2. 数据多边形与顶点圆点
+    # 2. 数据多边形、顶点圆点与雷达扫描同步脉冲环
     data_ratios = [m[3] for m in METRICS]
     data_pts = polygon_points(cx, cy, radius, data_ratios)
+    outer_pts = polygon_points(cx, cy, radius, [1.0] * 5)
     dots_svg: list[str] = []
     for idx, ratio in enumerate(data_ratios):
         angle = math.radians(-90 + idx * 72)
         px = cx + radius * ratio * math.cos(angle)
         py = cy + radius * ratio * math.sin(angle)
+        # 与 6.5s 顺时针雷达扫描臂经过各顶点（每 1.3s 一轴）的时刻保持同步触发
+        dots_svg.append(
+            f'<circle class="motion-only" cx="{px:.1f}" cy="{py:.1f}" r="3.0" fill="none" stroke="{t["accent_end"]}" stroke-width="1.2" stroke-opacity="0">'
+            f'<animate attributeName="r" values="3;9.5;9.5" keyTimes="0;0.24;1" dur="6.5s" begin="{idx * 1.3:.1f}s" repeatCount="indefinite"/>'
+            f'<animate attributeName="stroke-opacity" values="0.75;0;0" keyTimes="0;0.24;1" dur="6.5s" begin="{idx * 1.3:.1f}s" repeatCount="indefinite"/>'
+            f'</circle>'
+        )
         dots_svg.append(
             f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.0" fill="{t["accent_end"]}"/>'
         )
+
+    # 雷达顺时针扫掠扇形（-132° 到 -90°，42° 扇区，使 t=0 时前沿射线正好对准正上方 0 号顶点）
+    sweep_r = radius + 4.0
+    tx = cx + sweep_r * math.cos(math.radians(-132))
+    ty = cy + sweep_r * math.sin(math.radians(-132))
+    lx = cx
+    ly = cy - sweep_r
+    sweep_d = f"M {cx:.1f} {cy:.1f} L {tx:.2f} {ty:.2f} A {sweep_r:.1f} {sweep_r:.1f} 0 0 1 {lx:.2f} {ly:.2f} Z"
+    gx1 = cx + (radius * 0.65) * math.cos(math.radians(-132))
+    gy1 = cy + (radius * 0.65) * math.sin(math.radians(-132))
+    gx2 = cx
+    gy2 = cy - (radius * 0.65)
 
     # 3. 雷达轴外部中文标签（精确避开图形边界）
     vertex_labels = [
@@ -161,8 +181,9 @@ def render_audit_svg(theme_name: str) -> str:
             sx = 542 + s * 30
             fill = active_color if s < segs else t["seg_off"]
             opacity = "0.92" if s < segs else "1"
+            cls_attr = f' class="seg-live seg-d{row_idx}"' if s == segs - 1 else ""
             bars_svg.append(
-                f'<rect x="{sx}" y="{y_row - 9}" width="25" height="9" rx="2" fill="{fill}" fill-opacity="{opacity}"/>'
+                f'<rect{cls_attr} x="{sx}" y="{y_row - 9}" width="25" height="9" rx="2" fill="{fill}" fill-opacity="{opacity}"/>'
             )
         bars_svg.append(
             f'<text x="916" y="{y_row}" text-anchor="end" fill="{active_color}" font-family="{mono}" font-size="11.5" font-weight="600">{grade}</text>'
@@ -185,6 +206,27 @@ def render_audit_svg(theme_name: str) -> str:
         )
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 304" width="960" height="304" role="img" aria-label="sl251 engineering audit chart ({theme_name})">
+  <style>
+    @keyframes segLivePulse {{
+      0%, 100% {{ fill-opacity: 0.94; }}
+      50% {{ fill-opacity: 0.42; }}
+    }}
+    @keyframes radarCoreBreathe {{
+      0%, 100% {{ fill-opacity: 1; }}
+      50% {{ fill-opacity: 0.62; }}
+    }}
+    .seg-live {{ animation: segLivePulse 2.6s ease-in-out infinite; }}
+    .seg-d0 {{ animation-delay: 0s; }}
+    .seg-d1 {{ animation-delay: 0.35s; }}
+    .seg-d2 {{ animation-delay: 0.70s; }}
+    .seg-d3 {{ animation-delay: 1.05s; }}
+    .seg-d4 {{ animation-delay: 1.40s; }}
+    .radar-core {{ animation: radarCoreBreathe 4.0s ease-in-out infinite; }}
+    @media (prefers-reduced-motion: reduce) {{
+      .seg-live, .radar-core {{ animation: none; }}
+      .motion-only {{ display: none; }}
+    }}
+  </style>
   <defs>
     <linearGradient id="audit-bg-{theme_name}" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="{t['bg_start']}"/>
@@ -198,11 +240,18 @@ def render_audit_svg(theme_name: str) -> str:
       <stop offset="0%" stop-color="{t['accent_start']}" stop-opacity="0.24"/>
       <stop offset="100%" stop-color="{t['accent_end']}" stop-opacity="0.16"/>
     </linearGradient>
+    <linearGradient id="radar-sweep-{theme_name}" gradientUnits="userSpaceOnUse" x1="{gx1:.1f}" y1="{gy1:.1f}" x2="{gx2:.1f}" y2="{gy2:.1f}">
+      <stop offset="0%" stop-color="{t['accent_end']}" stop-opacity="0"/>
+      <stop offset="100%" stop-color="{t['accent_end']}" stop-opacity="0.32"/>
+    </linearGradient>
     <pattern id="audit-grid-{theme_name}" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M 32 0 L 0 0 0 32" fill="none" stroke="{t['grid']}" stroke-opacity="{t['grid_opacity']}" stroke-width="1"/>
     </pattern>
     <clipPath id="audit-clip-{theme_name}">
       <rect x="1" y="1" width="958" height="302" rx="14"/>
+    </clipPath>
+    <clipPath id="radar-clip-{theme_name}">
+      <polygon points="{outer_pts}"/>
     </clipPath>
   </defs>
 
@@ -214,6 +263,10 @@ def render_audit_svg(theme_name: str) -> str:
 
   <!-- 顶部标题条 -->
   <circle cx="34" cy="30" r="7.5" fill="{t['accent_end']}" fill-opacity="0.18"/>
+  <circle class="motion-only" cx="34" cy="30" r="3.6" fill="none" stroke="{t['accent_end']}" stroke-width="1.3" stroke-opacity="0.72">
+    <animate attributeName="r" values="3.6;11.5" dur="2.6s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values="0.72;0" dur="2.6s" repeatCount="indefinite"/>
+  </circle>
   <circle cx="34" cy="30" r="3.6" fill="{t['accent_end']}"/>
   <text x="50" y="34" fill="{t['text_secondary']}" font-family="{mono}" font-size="11.5" letter-spacing="1.4">SL251 // ENGINEERING AUDIT</text>
   <text x="928" y="34" text-anchor="end" fill="{t['text_muted']}" font-family="{mono}" font-size="11" letter-spacing="0.9">PUBLIC PREVIEW · READINESS 3 / 5 GATES</text>
@@ -223,7 +276,14 @@ def render_audit_svg(theme_name: str) -> str:
   <rect x="28" y="64" width="388" height="222" rx="10" fill="{t['panel_bg']}" fill-opacity="{t['panel_bg_opacity']}" stroke="{t['panel_border']}" stroke-width="1"/>
   <text x="44" y="84" fill="{t['text_muted']}" font-family="{mono}" font-size="10.5" letter-spacing="1.1">CAPABILITY RADAR</text>
   {"".join(rings_svg)}
-  <polygon points="{data_pts}" fill="url(#radar-fill-{theme_name})" stroke="url(#radar-stroke-{theme_name})" stroke-width="2" stroke-linejoin="round"/>
+  <g class="motion-only" clip-path="url(#radar-clip-{theme_name})">
+    <g>
+      <path d="{sweep_d}" fill="url(#radar-sweep-{theme_name})"/>
+      <line x1="{cx:.1f}" y1="{cy:.1f}" x2="{lx:.2f}" y2="{ly:.2f}" stroke="{t['accent_end']}" stroke-opacity="0.6" stroke-width="1.2"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 {cx:.1f} {cy:.1f}" to="360 {cx:.1f} {cy:.1f}" dur="6.5s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  <polygon class="radar-core" points="{data_pts}" fill="url(#radar-fill-{theme_name})" stroke="url(#radar-stroke-{theme_name})" stroke-width="2" stroke-linejoin="round"/>
   {"".join(dots_svg)}
   {"".join(labels_svg)}
 

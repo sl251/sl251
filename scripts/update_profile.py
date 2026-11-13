@@ -334,20 +334,23 @@ def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
     w_start = html.escape(pulse["window_start"])
     w_end = html.escape(pulse["window_end"])
 
-    # 仅在有提交的日子画圆点，最后一个活跃点加淡淡外圈
+    # 仅在有提交的日子画圆点，最后一个活跃点加雷达扩散脉冲
     dots_svg_parts: list[str] = []
     for idx, (px, py, _cnt) in enumerate(peaks):
         is_last = idx == len(peaks) - 1
         if is_last:
             dots_svg_parts.append(
-                f'<circle cx="{px:.1f}" cy="{py:.1f}" r="5.5" fill="{t["dot"]}" fill-opacity="0.22"/>'
+                f'<circle class="motion-only" cx="{px:.1f}" cy="{py:.1f}" r="3.5" fill="none" stroke="{t["dot"]}" stroke-width="1.3">'
+                f'<animate attributeName="r" values="3.5;11" dur="2.4s" repeatCount="indefinite"/>'
+                f'<animate attributeName="opacity" values="0.7;0" dur="2.4s" repeatCount="indefinite"/>'
+                f'</circle>'
             )
             dots_svg_parts.append(
                 f'<circle cx="{px:.1f}" cy="{py:.1f}" r="2.8" fill="{t["dot"]}"/>'
             )
         else:
             dots_svg_parts.append(
-                f'<circle cx="{px:.1f}" cy="{py:.1f}" r="2.0" fill="{t["accent_start"]}"/>'
+                f'<circle cx="{px:.1f}" cy="{py:.1f}" r="1.9" fill="{t["accent_start"]}" fill-opacity="0.85"/>'
             )
     dots_svg = "\n    ".join(dots_svg_parts)
 
@@ -355,6 +358,20 @@ def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
     sans = "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 220" width="960" height="220" role="img" aria-label="sl251 telemetry header ({theme_name})">
+  <style>
+    .ecg-sweep {{
+      stroke-dasharray: 120 1000;
+      animation: ecgSweep 4.8s linear infinite;
+    }}
+    @keyframes ecgSweep {{
+      0% {{ stroke-dashoffset: 120; }}
+      100% {{ stroke-dashoffset: -880; }}
+    }}
+    @media (prefers-reduced-motion: reduce) {{
+      .ecg-sweep {{ animation: none; stroke-dasharray: none; }}
+      .motion-only {{ display: none; }}
+    }}
+  </style>
   <defs>
     <linearGradient id="bg-{theme_name}" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="{t['bg_start']}"/>
@@ -374,6 +391,9 @@ def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
     <clipPath id="card-clip-{theme_name}">
       <rect x="1" y="1" width="958" height="218" rx="14"/>
     </clipPath>
+    <clipPath id="panel-clip-{theme_name}">
+      <rect x="473" y="65" width="458" height="130" rx="9"/>
+    </clipPath>
   </defs>
 
   <g clip-path="url(#card-clip-{theme_name})">
@@ -382,8 +402,11 @@ def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
   </g>
   <rect x="1" y="1" width="958" height="218" rx="14" fill="none" stroke="{t['border']}" stroke-width="1"/>
 
-  <!-- 顶部状态栏 -->
-  <circle cx="34" cy="30" r="7.5" fill="{t['dot']}" fill-opacity="0.18"/>
+  <!-- 顶部状态栏与动态呼吸信标 -->
+  <circle class="motion-only" cx="34" cy="30" r="3.6" fill="none" stroke="{t['dot']}" stroke-width="1.3">
+    <animate attributeName="r" values="3.6;11.5" dur="2.6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.75;0" dur="2.6s" repeatCount="indefinite"/>
+  </circle>
   <circle cx="34" cy="30" r="3.6" fill="{t['dot']}"/>
   <text x="50" y="34" fill="{t['text_secondary']}" font-family="{mono}" font-size="11.5" letter-spacing="1.4">SL251 // TELEMETRY</text>
   <text x="928" y="34" text-anchor="end" fill="{t['text_muted']}" font-family="{mono}" font-size="11" letter-spacing="0.9">30D PULSE · {total_commits} COMMITS · LATEST {w_end}</text>
@@ -402,9 +425,21 @@ def render_header_svg(theme_name: str, pulse: dict[str, Any]) -> str:
   <line x1="488" y1="132" x2="922" y2="132" stroke="{t['guide']}" stroke-width="1" stroke-dasharray="2 4"/>
   <line x1="488" y1="158" x2="922" y2="158" stroke="{t['baseline']}" stroke-width="1" stroke-dasharray="3 3"/>
 
-  <path d="{area_d}" fill="url(#pulse-area-{theme_name})"/>
-  <path d="{line_d}" fill="none" stroke="url(#pulse-stroke-{theme_name})" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  {dots_svg}
+  <g clip-path="url(#panel-clip-{theme_name})">
+    <path d="{area_d}" fill="url(#pulse-area-{theme_name})"/>
+    <!-- 底层基线波形 -->
+    <path d="{line_d}" fill="none" stroke="url(#pulse-stroke-{theme_name})" stroke-opacity="0.38" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- 沿曲线行进的高亮激光拖尾 -->
+    <path d="{line_d}" pathLength="1000" fill="none" stroke="url(#pulse-stroke-{theme_name})" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="ecg-sweep"/>
+    {dots_svg}
+    <!-- 沿真实心电曲线匀速扫过的示波光点 -->
+    <g class="motion-only">
+      <circle r="6.5" fill="{t['dot']}" fill-opacity="0.24"/>
+      <circle r="3.0" fill="{t['dot']}"/>
+      <circle r="1.2" fill="#ffffff"/>
+      <animateMotion dur="4.8s" repeatCount="indefinite" calcMode="paced" path="{line_d}"/>
+    </g>
+  </g>
 
   <text x="488" y="185" fill="{t['text_muted']}" font-family="{mono}" font-size="10" letter-spacing="0.5">{w_start}</text>
   <text x="918" y="185" text-anchor="end" fill="{t['text_muted']}" font-family="{mono}" font-size="10" letter-spacing="0.5">{w_end}</text>
