@@ -1,0 +1,199 @@
+{
+  "handle": "sl251",
+  "tagline": "A human project. No stable release yet.",
+  "summary": "Clinical Medicine undergrad. Building AI agents, Android apps, and overly serious detours.",
+  "runtime_status": {
+    "release_channel": "Rolling Release",
+    "task_scheduler": "Preemptive",
+    "scope_control": "Experimental",
+    "interrupt_source": "New model releases",
+    "rollback_support": "Not Implemented",
+    "issue_backlog": "Growing"
+  },
+  "featured_projects": [
+    {
+      "name": "HDSI-Android",
+      "repo": "sl251/HDSI-Android",
+      "url": "https://github.com/sl251/HDSI-Android",
+      "summary": "把 HDS-Interlude 的长期记忆、心境和日程叙事引擎搬进 Android 本地，无需电脑或 Termux。"
+    },
+    {
+      "name": "Antigravity ACP",
+      "repo": "sl251/astrbot_plugin_antigravity_acp",
+      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp",
+      "summary": "让 AstrBot 通过 ACP 协议直接连接并驱动 Antigravity 客户端。"
+    },
+    {
+      "name": "E2B Sandbox",
+      "repo": "sl251/astrbot_plugin_e2b_sandbox",
+      "url": "https://github.com/sl251/astrbot_plugin_e2b_sandbox",
+      "summary": "给机器人配一台云端 Python 沙箱电脑，算数据、画图、处理文件不占本地资源。"
+    }
+  ],
+  "experiments": [
+    {
+      "name": "WHO IS NAILONG",
+      "url": "https://whoisnailong.me/",
+      "repo": "sl251/nailong",
+      "summary": "全国高校“奶龙大学”域名 3D 地球，点一下还会笑。"
+    }
+  ],
+  "telemetry_30d": {
+    "window_start": "2026-10-15",
+    "window_end": "2026-11-13",
+    "total_commits": 162,
+    "peak_per_day": 22,
+    "daily_counts": [
+      {
+        "date": "2026-10-15",
+        "commits": 21
+      },
+      {
+        "date": "2026-10-16",
+        "commits": 16
+      },
+      {
+        "date": "2026-10-17",
+        "commits": 12
+      },
+      {
+        "date": "2026-10-18",
+        "commits": 8
+      },
+      {
+        "date": "2026-10-19",
+        "commits": 6
+      },
+      {
+        "date": "2026-10-20",
+        "commits": 0
+      },
+      {
+        "date": "2026-10-21",
+        "commits": 11
+      },
+      {
+        "date": "2026-10-22",
+        "commits": 10
+      },
+      {
+        "date": "2026-10-23",
+        "commits": 22
+      },
+      {
+        "date": "2026-10-24",
+        "commits": 0
+      },
+      {
+        "date": "2026-10-25",
+        "commits": 1
+      },
+      {
+        "date": "2026-10-26",
+        "commits": 1
+      },
+      {
+        "date": "2026-10-27",
+        "commits": 0
+      },
+      {
+        "date": "2026-10-28",
+        "commits": 0
+      },
+      {
+        "date": "2026-10-29",
+        "commits": 0
+      },
+      {
+        "date": "2026-10-30",
+        "commits": 0
+      },
+      {
+        "date": "2026-10-31",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-01",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-02",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-03",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-04",
+        "commits": 3
+      },
+      {
+        "date": "2026-11-05",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-06",
+        "commits": 8
+      },
+      {
+        "date": "2026-11-07",
+        "commits": 5
+      },
+      {
+        "date": "2026-11-08",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-09",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-10",
+        "commits": 20
+      },
+      {
+        "date": "2026-11-11",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-12",
+        "commits": 8
+      },
+      {
+        "date": "2026-11-13",
+        "commits": 10
+      }
+    ]
+  },
+  "recent_activity": [
+    {
+      "date": "2026-11-13",
+      "repo": "astrbot_plugin_antigravity_acp",
+      "kind": "release",
+      "summary": "发布 v0.4.3",
+      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.4.3"
+    },
+    {
+      "date": "2026-11-13",
+      "repo": "defensive-writing-expression",
+      "kind": "commit",
+      "summary": "docs: add defensive writing meme illustration to README",
+      "url": "https://github.com/sl251/defensive-writing-expression/commit/40be8943c6afa7a2a7109feaea4e47b596ae92f8"
+    },
+    {
+      "date": "2026-11-04",
+      "repo": "HDSI-Android",
+      "kind": "release",
+      "summary": "发布 v0.1.0-preview.9.7.2",
+      "url": "https://github.com/sl251/HDSI-Android/releases/tag/v0.1.0-preview.9.7.2"
+    },
+    {
+      "date": "2026-10-21",
+      "repo": "zlibrary-tor",
+      "kind": "commit",
+      "summary": "fix(deps): raise certifi/setuptools floors (2026-10 advisories)",
+      "url": "https://github.com/sl251/zlibrary-tor/commit/d14caf1ea1b1d5a36bbe0b2f6d44816446f230c8"
+    }
+  ]
+}
