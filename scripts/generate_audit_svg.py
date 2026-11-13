@@ -128,19 +128,19 @@ def render_audit_svg(theme_name: str) -> str:
             f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.0" fill="{t["accent_end"]}"/>'
         )
 
-    # 3. 雷达轴外部标签（精确避开图形边界）
+    # 3. 雷达轴外部中文标签（精确避开图形边界）
     vertex_labels = [
-        (222.0, 106.0, "middle", f"{METRICS[0][1]} · {METRICS[0][2]}"),
-        (300.0, 166.0, "start", f"{METRICS[1][1]} · {METRICS[1][2]}"),
-        (270.0, 260.0, "start", f"{METRICS[2][1]} · {METRICS[2][2]}"),
-        (174.0, 260.0, "end", f"{METRICS[3][1]} · {METRICS[3][2]}"),
-        (144.0, 166.0, "end", f"{METRICS[4][1]} · {METRICS[4][2]}"),
+        (222.0, 105.0, "middle", f"{METRICS[0][0]} · {METRICS[0][2]}"),
+        (299.0, 166.0, "start", f"{METRICS[1][0]} · {METRICS[1][2]}"),
+        (270.0, 260.0, "start", f"{METRICS[2][0]} · {METRICS[2][2]}"),
+        (174.0, 260.0, "end", f"{METRICS[3][0]} · {METRICS[3][2]}"),
+        (145.0, 166.0, "end", f"{METRICS[4][0]} · {METRICS[4][2]}"),
     ]
     labels_svg: list[str] = []
     for lx, ly, anchor, text in vertex_labels:
         labels_svg.append(
             f'<text x="{lx:.1f}" y="{ly:.1f}" text-anchor="{anchor}" fill="{t["text_secondary"]}" '
-            f'font-family="{mono}" font-size="10.2" letter-spacing="0.5">{text}</text>'
+            f'font-family="{sans}" font-size="11" letter-spacing="0.2">{text}</text>'
         )
 
     # 4. 右侧分段式审计评分条（按固定顺序展示）
