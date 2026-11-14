@@ -45,15 +45,11 @@
     }
   ],
   "telemetry_30d": {
-    "window_start": "2026-10-15",
-    "window_end": "2026-11-13",
-    "total_commits": 162,
-    "peak_per_day": 22,
+    "window_start": "2026-10-16",
+    "window_end": "2026-11-14",
+    "total_commits": 158,
+    "peak_per_day": 26,
     "daily_counts": [
-      {
-        "date": "2026-10-15",
-        "commits": 21
-      },
       {
         "date": "2026-10-16",
         "commits": 16
@@ -168,17 +164,21 @@
       },
       {
         "date": "2026-11-13",
-        "commits": 10
+        "commits": 26
+      },
+      {
+        "date": "2026-11-14",
+        "commits": 1
       }
     ]
   },
   "recent_activity": [
     {
-      "date": "2026-11-13",
+      "date": "2026-11-14",
       "repo": "astrbot_plugin_antigravity_acp",
       "kind": "release",
-      "summary": "发布 v0.4.3",
-      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.4.3"
+      "summary": "发布 v0.5.2",
+      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.5.2"
     },
     {
       "date": "2026-11-13",
