@@ -47,7 +47,7 @@
   "telemetry_30d": {
     "window_start": "2026-10-16",
     "window_end": "2026-11-14",
-    "total_commits": 158,
+    "total_commits": 168,
     "peak_per_day": 26,
     "daily_counts": [
       {
@@ -168,38 +168,38 @@
       },
       {
         "date": "2026-11-14",
-        "commits": 1
+        "commits": 11
       }
     ]
   },
   "recent_activity": [
     {
       "date": "2026-11-14",
+      "repo": "HDSI-Android",
+      "kind": "commit",
+      "summary": "docs: plan liquid-glass navigation, settings UX and global motion p…",
+      "url": "https://github.com/sl251/HDSI-Android/commit/5bca91de134faf316ff586939c24f64f2410a5fc"
+    },
+    {
+      "date": "2026-11-14",
+      "repo": "astrbot_plugin_e2b_sandbox",
+      "kind": "release",
+      "summary": "发布 v1.4.2",
+      "url": "https://github.com/sl251/astrbot_plugin_e2b_sandbox/releases/tag/v1.4.2"
+    },
+    {
+      "date": "2026-11-14",
+      "repo": "defensive-writing-expression",
+      "kind": "commit",
+      "summary": "feat: release context-aware defensive writing v3.3",
+      "url": "https://github.com/sl251/defensive-writing-expression/commit/e4e1b67a84a5eb645d06f67defa8a0c37326b091"
+    },
+    {
+      "date": "2026-11-14",
       "repo": "astrbot_plugin_antigravity_acp",
       "kind": "release",
       "summary": "发布 v0.5.2",
       "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.5.2"
-    },
-    {
-      "date": "2026-11-13",
-      "repo": "defensive-writing-expression",
-      "kind": "commit",
-      "summary": "docs: add defensive writing meme illustration to README",
-      "url": "https://github.com/sl251/defensive-writing-expression/commit/40be8943c6afa7a2a7109feaea4e47b596ae92f8"
-    },
-    {
-      "date": "2026-11-04",
-      "repo": "HDSI-Android",
-      "kind": "release",
-      "summary": "发布 v0.1.0-preview.9.7.2",
-      "url": "https://github.com/sl251/HDSI-Android/releases/tag/v0.1.0-preview.9.7.2"
-    },
-    {
-      "date": "2026-10-21",
-      "repo": "zlibrary-tor",
-      "kind": "commit",
-      "summary": "fix(deps): raise certifi/setuptools floors (2026-10 advisories)",
-      "url": "https://github.com/sl251/zlibrary-tor/commit/d14caf1ea1b1d5a36bbe0b2f6d44816446f230c8"
     }
   ]
 }
