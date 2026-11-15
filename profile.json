@@ -45,15 +45,11 @@
     }
   ],
   "telemetry_30d": {
-    "window_start": "2026-10-16",
-    "window_end": "2026-11-14",
-    "total_commits": 168,
+    "window_start": "2026-10-17",
+    "window_end": "2026-11-15",
+    "total_commits": 169,
     "peak_per_day": 26,
     "daily_counts": [
-      {
-        "date": "2026-10-16",
-        "commits": 16
-      },
       {
         "date": "2026-10-17",
         "commits": 12
@@ -168,17 +164,28 @@
       },
       {
         "date": "2026-11-14",
-        "commits": 11
+        "commits": 13
+      },
+      {
+        "date": "2026-11-15",
+        "commits": 15
       }
     ]
   },
   "recent_activity": [
     {
-      "date": "2026-11-14",
+      "date": "2026-11-15",
+      "repo": "astrbot_plugin_antigravity_acp",
+      "kind": "release",
+      "summary": "发布 v0.6.0",
+      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.6.0"
+    },
+    {
+      "date": "2026-11-15",
       "repo": "HDSI-Android",
-      "kind": "commit",
-      "summary": "docs: plan liquid-glass navigation, settings UX and global motion p…",
-      "url": "https://github.com/sl251/HDSI-Android/commit/5bca91de134faf316ff586939c24f64f2410a5fc"
+      "kind": "release",
+      "summary": "发布 v0.1.0-preview.9.7.4",
+      "url": "https://github.com/sl251/HDSI-Android/releases/tag/v0.1.0-preview.9.7.4"
     },
     {
       "date": "2026-11-14",
@@ -193,13 +200,6 @@
       "kind": "commit",
       "summary": "feat: release context-aware defensive writing v3.3",
       "url": "https://github.com/sl251/defensive-writing-expression/commit/e4e1b67a84a5eb645d06f67defa8a0c37326b091"
-    },
-    {
-      "date": "2026-11-14",
-      "repo": "astrbot_plugin_antigravity_acp",
-      "kind": "release",
-      "summary": "发布 v0.5.2",
-      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.5.2"
     }
   ]
 }
