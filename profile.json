@@ -45,15 +45,11 @@
     }
   ],
   "telemetry_30d": {
-    "window_start": "2026-10-17",
-    "window_end": "2026-11-15",
-    "total_commits": 169,
+    "window_start": "2026-10-18",
+    "window_end": "2026-11-16",
+    "total_commits": 182,
     "peak_per_day": 26,
     "daily_counts": [
-      {
-        "date": "2026-10-17",
-        "commits": 12
-      },
       {
         "date": "2026-10-18",
         "commits": 8
@@ -169,23 +165,27 @@
       {
         "date": "2026-11-15",
         "commits": 15
+      },
+      {
+        "date": "2026-11-16",
+        "commits": 25
       }
     ]
   },
   "recent_activity": [
     {
-      "date": "2026-11-15",
+      "date": "2026-11-16",
       "repo": "astrbot_plugin_antigravity_acp",
       "kind": "release",
-      "summary": "发布 v0.6.0",
-      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.6.0"
+      "summary": "发布 v0.7.1",
+      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.7.1"
     },
     {
-      "date": "2026-11-15",
+      "date": "2026-11-16",
       "repo": "HDSI-Android",
-      "kind": "release",
-      "summary": "发布 v0.1.0-preview.9.7.4",
-      "url": "https://github.com/sl251/HDSI-Android/releases/tag/v0.1.0-preview.9.7.4"
+      "kind": "commit",
+      "summary": "docs(ui): plan native/WebView edge-to-edge full-bleed fix",
+      "url": "https://github.com/sl251/HDSI-Android/commit/475e8a1e511ac30c3012afb82f70bb10615a482b"
     },
     {
       "date": "2026-11-14",
