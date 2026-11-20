@@ -45,19 +45,11 @@
     }
   ],
   "telemetry_30d": {
-    "window_start": "2026-10-19",
-    "window_end": "2026-11-17",
-    "total_commits": 193,
+    "window_start": "2026-10-21",
+    "window_end": "2026-11-19",
+    "total_commits": 194,
     "peak_per_day": 26,
     "daily_counts": [
-      {
-        "date": "2026-10-19",
-        "commits": 6
-      },
-      {
-        "date": "2026-10-20",
-        "commits": 0
-      },
       {
         "date": "2026-10-21",
         "commits": 11
@@ -169,37 +161,45 @@
       {
         "date": "2026-11-17",
         "commits": 19
+      },
+      {
+        "date": "2026-11-18",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-19",
+        "commits": 7
       }
     ]
   },
   "recent_activity": [
     {
-      "date": "2026-11-17",
-      "repo": "HDSI-Android",
-      "kind": "release",
-      "summary": "发布 v0.1.0-preview.9.7.5",
-      "url": "https://github.com/sl251/HDSI-Android/releases/tag/v0.1.0-preview.9.7.5"
+      "date": "2026-11-19",
+      "repo": "nailong",
+      "kind": "commit",
+      "summary": "chore: add MIT LICENSE",
+      "url": "https://github.com/sl251/nailong/commit/f87360240489523a6192f876ef32a0376e2548be"
     },
     {
-      "date": "2026-11-17",
-      "repo": "astrbot_plugin_antigravity_acp",
-      "kind": "release",
-      "summary": "发布 v0.7.3",
-      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.7.3"
+      "date": "2026-11-19",
+      "repo": "imagefree-skill",
+      "kind": "commit",
+      "summary": "chore: add MIT LICENSE",
+      "url": "https://github.com/sl251/imagefree-skill/commit/c3bde19e3b60310d0c11c0ebe07ef526cfb5b898"
     },
     {
-      "date": "2026-11-17",
-      "repo": "astrbot_plugin_e2b_sandbox",
-      "kind": "release",
-      "summary": "发布 v1.5.0",
-      "url": "https://github.com/sl251/astrbot_plugin_e2b_sandbox/releases/tag/v1.5.0"
-    },
-    {
-      "date": "2026-11-14",
+      "date": "2026-11-19",
       "repo": "defensive-writing-expression",
       "kind": "commit",
-      "summary": "feat: release context-aware defensive writing v3.3",
-      "url": "https://github.com/sl251/defensive-writing-expression/commit/e4e1b67a84a5eb645d06f67defa8a0c37326b091"
+      "summary": "chore: add MIT LICENSE",
+      "url": "https://github.com/sl251/defensive-writing-expression/commit/4a97a4a11972ba2b558421e71969bca9a2d0ec07"
+    },
+    {
+      "date": "2026-11-19",
+      "repo": "astrbot_plugin_antigravity_acp",
+      "kind": "release",
+      "summary": "发布 v0.7.4",
+      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.7.4"
     }
   ]
 }

@@ -44,10 +44,10 @@
 ## Recent Activity
 
 <!-- ACTIVITY:START -->
-- `2026-11-17` · **[HDSI-Android](https://github.com/sl251/HDSI-Android)** — 发布 [`v0.1.0-preview.9.7.5`](https://github.com/sl251/HDSI-Android/releases/tag/v0.1.0-preview.9.7.5)
-- `2026-11-17` · **[astrbot_plugin_antigravity_acp](https://github.com/sl251/astrbot_plugin_antigravity_acp)** — 发布 [`v0.7.3`](https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.7.3)
-- `2026-11-17` · **[astrbot_plugin_e2b_sandbox](https://github.com/sl251/astrbot_plugin_e2b_sandbox)** — 发布 [`v1.5.0`](https://github.com/sl251/astrbot_plugin_e2b_sandbox/releases/tag/v1.5.0)
-- `2026-11-14` · **[defensive-writing-expression](https://github.com/sl251/defensive-writing-expression)** — feat: release context-aware defensive writing v3.3
+- `2026-11-19` · **[nailong](https://github.com/sl251/nailong)** — chore: add MIT LICENSE
+- `2026-11-19` · **[imagefree-skill](https://github.com/sl251/imagefree-skill)** — chore: add MIT LICENSE
+- `2026-11-19` · **[defensive-writing-expression](https://github.com/sl251/defensive-writing-expression)** — chore: add MIT LICENSE
+- `2026-11-19` · **[astrbot_plugin_antigravity_acp](https://github.com/sl251/astrbot_plugin_antigravity_acp)** — 发布 [`v0.7.4`](https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.7.4)
 <!-- ACTIVITY:END -->
 
 ## Experiments
