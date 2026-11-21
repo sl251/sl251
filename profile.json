@@ -45,19 +45,11 @@
     }
   ],
   "telemetry_30d": {
-    "window_start": "2026-10-21",
-    "window_end": "2026-11-19",
-    "total_commits": 194,
+    "window_start": "2026-10-23",
+    "window_end": "2026-11-21",
+    "total_commits": 182,
     "peak_per_day": 26,
     "daily_counts": [
-      {
-        "date": "2026-10-21",
-        "commits": 11
-      },
-      {
-        "date": "2026-10-22",
-        "commits": 10
-      },
       {
         "date": "2026-10-23",
         "commits": 22
@@ -169,10 +161,25 @@
       {
         "date": "2026-11-19",
         "commits": 7
+      },
+      {
+        "date": "2026-11-20",
+        "commits": 0
+      },
+      {
+        "date": "2026-11-21",
+        "commits": 9
       }
     ]
   },
   "recent_activity": [
+    {
+      "date": "2026-11-21",
+      "repo": "HDSI-Android",
+      "kind": "release",
+      "summary": "发布 v0.1.0-preview.9.7.6",
+      "url": "https://github.com/sl251/HDSI-Android/releases/tag/v0.1.0-preview.9.7.6"
+    },
     {
       "date": "2026-11-19",
       "repo": "nailong",
@@ -193,13 +200,6 @@
       "kind": "commit",
       "summary": "chore: add MIT LICENSE",
       "url": "https://github.com/sl251/defensive-writing-expression/commit/4a97a4a11972ba2b558421e71969bca9a2d0ec07"
-    },
-    {
-      "date": "2026-11-19",
-      "repo": "astrbot_plugin_antigravity_acp",
-      "kind": "release",
-      "summary": "发布 v0.7.4",
-      "url": "https://github.com/sl251/astrbot_plugin_antigravity_acp/releases/tag/v0.7.4"
     }
   ]
 }
